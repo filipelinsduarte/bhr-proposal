@@ -64,6 +64,23 @@
     .rf3{flex-wrap:wrap!important}
     .rf3>*{flex:1 1 calc(50% - 20px)!important;min-width:calc(50% - 20px)!important}
   }
+  @media(max-width:768px){
+    /* Remove flex height constraints — lets .s scroll instead of clipping content */
+    [style*="min-height:0"]{min-height:auto!important}
+    /* Restore narrow text to full width */
+    [style*="max-width:74%"],[style*="max-width:72%"],[style*="max-width:75%"]{max-width:100%!important}
+    /* Inline 2-col grids → 1 col (attribute !important beats inline styles) */
+    [style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important}
+    /* Unequal 2-col grid on slide 6 → 1 col */
+    [style*="grid-template-columns:1.5fr 0.5fr"]{grid-template-columns:1fr!important}
+    /* 3-col grids (slide 8) → 1 col */
+    [style*="grid-template-columns:repeat(3,1fr)"]{grid-template-columns:1fr!important}
+    /* 5-col venue cards (slide 5) → 2 col */
+    [style*="grid-template-columns:repeat(5,1fr)"]{grid-template-columns:1fr 1fr!important}
+    /* Pricing table: horizontal scroll, keep 7-col layout intact */
+    .pricing-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 -4.5vw;padding:0 4.5vw}
+    .pricing-scroll .pricing-inner{min-width:560px}
+  }
   @media(max-width:640px){
     .rg2,.rg3{grid-template-columns:1fr!important}
     .rf2,.rf3{flex-direction:column!important}
@@ -754,6 +771,7 @@
   <!-- AI model favicons reusable snippet (inline per row) -->
   <!-- chatgpt.com | gemini.google.com | perplexity.ai | google.com -->
 
+  <div class="pricing-scroll"><div class="pricing-inner">
   <!-- Table header -->
   <div style="display:grid;grid-template-columns:1.7fr 0.75fr 1.6fr 1fr 1.15fr 1.15fr 0.75fr;gap:0;background:var(--accent);border-radius:8px 8px 0 0;padding:clamp(8px,1.1vh,12px) clamp(14px,1.8vw,22px)">
     <div style="font-size:clamp(9px,1.05vh,11px);font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.75)">Accounts (venues)</div>
@@ -867,6 +885,7 @@
     </div>
 
   </div>
+  </div></div><!-- /pricing-scroll -->
 
   <p style="font-size:clamp(11px,1.4vh,14px);color:var(--ink4);margin:clamp(8px,1.2vh,14px) 0 0;line-height:1.5">All prices in <strong style="color:var(--ink3)">USD</strong> per account per month, billed monthly. All tiers include: AI visibility scores &bull; Citation intelligence &bull; Competitor benchmarking &bull; White-label reports &bull; Looker Studio &bull; API access. Pricing finalised prior to onboarding.</p>
 
